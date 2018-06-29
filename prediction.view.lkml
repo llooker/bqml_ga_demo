@@ -1,16 +1,53 @@
-view: input {
+explore: train {}
+view: train {
   derived_table: {
-    explore_source: combined_input {
-      column: full_visitor_id {}
-      column: bounces {}
-      column: time_on_site {}
-      column: pageviews {}
-      column: transactions {}
-      column: medium {}
-      column: channel_grouping {}
-      column: is_mobile {}
-      column: country {}
-      column: will_buy_later {field: input_two.will_buy_later}
+    explore_source: ga_sessions {
+      column: fullVisitorId {}
+      # include this because bounces, etc. are aggregated
+      column: id {}
+      column: bounces_total { field: totals.bounces_total }
+      column: timeonsite_total { field: totals.timeonsite_total }
+      column: pageviews_total { field: totals.pageviews_total }
+      column: transactions_count { field: totals.transactions_count }
+      column: newvisits { field: totals.newVisits_total }
+      column: medium { field: trafficSource.medium }
+      column: channelGrouping {}
+      column: isMobile { field: device.isMobile }
+      column: country { field: geoNetwork.country }
+      derived_column: will_buy_later {
+        sql: IF(COUNTIF(transactions_count > 0 AND newvisits IS NULL)
+      OVER(PARTITION BY fullVisitorId) > 0, 1, 0) ;;
+      }
+        filters: {
+          field: ga_sessions.partition_date
+          value: "3 years"
+    }
+  }
+  }
+  measure: count {
+    type: count
+  }
+}
+# delete later
+view: test {
+  derived_table: {
+    explore_source: ga_sessions {
+      column: fullVisitorId {}
+      # include this because bounces, etc. are aggregated
+      column: id {}
+      column: bounces_total { field: totals.bounces_total }
+      column: timeonsite_total { field: totals.timeonsite_total }
+      column: pageviews_total { field: totals.pageviews_total }
+      column: transactions_count { field: totals.transactions_count }
+      column: newvisits { field: totals.newVisits_total }
+      column: medium { field: trafficSource.medium }
+      column: channelGrouping {}
+      column: isMobile { field: device.isMobile }
+      column: country { field: geoNetwork.country }
+      filters: {
+        field: ga_sessions.visitStart_date
+        value: "2017/05/01 to 2017/08/01"
+      }
     }
   }
 }
@@ -24,8 +61,8 @@ view: purchase_regression {
         , labels=['will_buy_later']
         ) AS
       SELECT
-         * EXCEPT(full_visitor_id)
-      FROM ${input.SQL_TABLE_NAME};;
+         * EXCEPT(fullVisitorId, id)
+      FROM ${train.SQL_TABLE_NAME};;
   }
 }
 
@@ -38,7 +75,7 @@ view: purchase_regression_evaluation {
   derived_table: {
     sql: SELECT * FROM ml.EVALUATE(
           MODEL ${purchase_regression.SQL_TABLE_NAME},
-          (SELECT * FROM ${input.SQL_TABLE_NAME}));;
+          (SELECT * FROM ${train.SQL_TABLE_NAME}));;
   }
   dimension: recall {type: number}
   dimension: accuracy {type: number}
@@ -84,7 +121,7 @@ view: purchase_prediction {
   derived_table: {
     sql: SELECT * FROM ml.PREDICT(
           MODEL ${purchase_regression.SQL_TABLE_NAME},
-          (SELECT * FROM ${input_three.SQL_TABLE_NAME}));;
+          (SELECT * FROM ${test.SQL_TABLE_NAME}));;
   }
 
   dimension: full_visitor_id {

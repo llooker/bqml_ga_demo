@@ -1,7 +1,10 @@
 connection: "google_analytics2"
 
-include: "*.view.lkml"         # include all views in this project
-include: "*.dashboard.lookml"  # include all dashboards in this project
+# include all the views
+include: "*.view"
+
+# include all the dashboards
+include: "*.dashboard"
 
 datagroup: sweet_datagroup {
   #Rad datagroup, yo!
@@ -9,14 +12,6 @@ datagroup: sweet_datagroup {
   sql_trigger: SELECT CURRENT_DATE() ;;
 }
 
-explore: combined_input {
-
-  from: input_one
-
-  join: input_two {
-    sql_on: ${combined_input.full_visitor_id} = ${input_two.fullvisitorid} ;;
-    type: inner
-    relationship: one_to_one
-  }
-
+explore: ga_sessions {
+  extends: [ga_sessions_block]
 }
