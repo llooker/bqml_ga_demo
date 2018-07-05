@@ -92,7 +92,7 @@ view: roc_curve {
         (SELECT * FROM ${testing_input.SQL_TABLE_NAME}));;
   }
   dimension: threshold {type: number}
-  dimension: recall {type: number}
+  dimension: recall {type: number value_format_name: percent_2}
   dimension: false_positive_rate {type: number}
   dimension: true_positives {type: number }
   dimension: false_positives {type: number}
@@ -100,7 +100,8 @@ view: roc_curve {
   dimension: false_negatives {type: number }
   dimension: precision {
     type:  number
-    sql:  ${true_positives} / (${true_positives} + ${false_positives});;
+    value_format_name: percent_2
+    sql:  ${true_positives} / NULLIF((${true_positives} + ${false_positives}),0);;
   }
   measure: total_false_positives {
     type: sum
@@ -109,6 +110,16 @@ view: roc_curve {
   measure: total_true_positives {
     type: sum
     sql: ${true_positives} ;;
+  }
+  dimension: threshold_accuracy {
+    type: number
+    value_format_name: percent_2
+    sql:  1.0*(${true_positives} + ${true_negatives}) / NULLIF((${true_positives} + ${true_negatives} + ${false_positives} + ${false_negatives}),0);;
+  }
+  dimension: threshold_f1 {
+    type: number
+    value_format_name: percent_3
+    sql: 2.0*${recall}*${precision} / NULLIF((${recall}+${precision}),0);;
   }
 }
 
