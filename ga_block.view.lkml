@@ -231,6 +231,29 @@ view: ga_sessions_base {
   dimension: hits {hidden:yes}
   dimension: hits_eventInfo {hidden:yes}
 
+
+##################################### GA360 BQML fields ########################
+  parameter: prediction_window_days {
+    type: number
+  }
+
+  dimension: x_days_future_purchases {
+    type: number
+    sql: (SELECT COALESCE(SUM(totals.transactions),0)
+          FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` as subquery_table
+          LEFT JOIN UNNEST([subquery_table.totals]) as totals
+          WHERE subquery_table.fullvisitorid = ${TABLE}.fullvisitorid
+            AND subquery_table.visitStarttime > ${TABLE}.visitStarttime
+            AND subquery_table.visitStarttime - ${TABLE}.visitStarttime < {% parameter prediction_window_days %}*24*60*60 --X days, in seconds
+           ) ;;
+  }
+
+  dimension: will_purchase_in_future {
+    type: number
+    sql: IF(${x_days_future_purchases} >0,1,0) ;;
+  }
+##################################### END - GA360 BQML fields ########################
+
 }
 
 
