@@ -1,4 +1,4 @@
-# DEPRICATED
+# DEPRECATED
 # explore: train {}
 # view: train {
 #   derived_table: {
