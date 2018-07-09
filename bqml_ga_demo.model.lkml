@@ -7,7 +7,6 @@ include: "*.view"
 # include: "*.dashboard"
 
 datagroup: sweet_datagroup {
-  #Rad datagroup, yo!
   max_cache_age: "1 hour"
   sql_trigger: SELECT CURRENT_DATE() ;;
 }
