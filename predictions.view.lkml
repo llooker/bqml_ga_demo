@@ -15,7 +15,7 @@ view: training_input {
       column: will_purchase_in_future {}
       filters: {
         field: ga_sessions.partition_date
-        value: "720 days ago for 360 days" #"720 days ago for 630 days"
+        value: "900 days ago for 360 days" #"720 days ago for 630 days"
       }
       filters: {
         field: ga_sessions.prediction_window_days
@@ -41,7 +41,7 @@ view: testing_input {
       column: will_purchase_in_future {}
       filters: {
         field: ga_sessions.partition_date
-        value: "360 days ago for 360 days"
+        value: "540 days ago for 360 days"
       }
       filters: {
         field: ga_sessions.prediction_window_days
