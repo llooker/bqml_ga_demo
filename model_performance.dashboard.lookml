@@ -245,59 +245,6 @@
     col: 8
     width: 8
     height: 2
-  - title: Precision-Recall Curve
-    name: Precision-Recall Curve
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: looker_line
-    fields:
-    - roc_curve.precision
-    - roc_curve.recall
-    sorts:
-    - roc_curve.precision
-    limit: 500
-    query_timezone: America/New_York
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: false
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    y_axes:
-    - label: ''
-      orientation: left
-      series:
-      - id: roc_curve.precision
-        name: Roc Curve Precision
-        axisId: roc_curve.precision
-      showLabels: false
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
-    listen: {}
-    row: 4
-    col: 8
-    width: 8
-    height: 6
   - title: F1 Score (static)
     name: F1 Score (static)
     model: bqml_ga_demo
@@ -852,9 +799,65 @@
     col: 0
     width: 24
     height: 2
+  - title: Precision-Recall Curve
+    name: Precision-Recall Curve
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: looker_line
+    fields:
+    - roc_curve.precision
+    - roc_curve.recall
+    sorts:
+    - roc_curve.precision
+    limit: 500
+    query_timezone: America/New_York
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: monotone
+    series_types: {}
+    y_axes:
+    - label: ''
+      orientation: left
+      series:
+      - id: roc_curve.precision
+        name: Precision
+        axisId: roc_curve.precision
+      showLabels: true
+      showValues: true
+      unpinAxis: false
+      tickDensity: default
+      tickDensityCustom: 5
+      type: linear
+    x_axis_datetime_label: ''
+    hide_legend: false
+    listen: {}
+    row: 4
+    col: 8
+    width: 8
+    height: 6
   filters:
   - name: Error Matrix Threshold
     title: Error Matrix Threshold
     type: number_filter
+    default_value: '0.10955091618781454'
     allow_multiple_values: false
     required: true
