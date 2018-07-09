@@ -7,6 +7,7 @@ include: "*.view"
 # include: "*.dashboard"
 
 datagroup: bqml_datagroup {
+  #retrain model every day
   max_cache_age: "1 hour"
   sql_trigger: SELECT CURRENT_DATE() ;;
 }
