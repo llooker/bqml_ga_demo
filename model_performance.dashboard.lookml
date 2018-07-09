@@ -856,6 +856,5 @@
   - name: Error Matrix Threshold
     title: Error Matrix Threshold
     type: number_filter
-    default_value: '0.10955091618781454'
     allow_multiple_values: false
     required: true
