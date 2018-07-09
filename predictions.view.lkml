@@ -54,7 +54,7 @@ view: testing_input {
 
 view: future_purchase_model {
   derived_table: {
-    datagroup_trigger: sweet_datagroup
+    datagroup_trigger: bqml_datagroup
     sql_create:
       CREATE OR REPLACE MODEL ${SQL_TABLE_NAME}
       OPTIONS(model_type='logistic_reg'
