@@ -91,7 +91,14 @@ view: roc_curve {
         MODEL ${future_purchase_model.SQL_TABLE_NAME},
         (SELECT * FROM ${testing_input.SQL_TABLE_NAME}));;
   }
-  dimension: threshold {type: number}
+  dimension: threshold {
+    type: number
+    link: {
+      label: "Likely Customers to Purchase"
+      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future]=%3E%3D{{value}}"
+      icon_url: "http://www.looker.com/favicon.ico"
+    }
+  }
   dimension: recall {type: number value_format_name: percent_2}
   dimension: false_positive_rate {type: number}
   dimension: true_positives {type: number }
