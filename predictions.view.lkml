@@ -154,17 +154,46 @@ view: future_purchase_model_training_info {
     value_format_name: decimal_1
   }
 }
+########################################## PREDICT FUTURE ############################
+view: future_input {
+  derived_table: {
+    explore_source: ga_sessions {
+      column: visitId {}
+      column: fullVisitorId {}
+      column: medium { field: trafficSource.medium }
+      column: channelGrouping {}
+      column: isMobile { field: device.isMobile }
+      column: country { field: geoNetwork.country }
+      column: bounces_total { field: totals.bounces_total }
+      column: pageviews_total { field: totals.pageviews_total }
+      column: transactions_count { field: totals.transactions_count }
+      column: first_time_visitors {}
+      filters: {
+        field: ga_sessions.partition_date
+        value: "360 days"
+      }
+    }
+  }
+}
 
 
-explore:  future_purchase_prediction {}
 view: future_purchase_prediction {
   derived_table: {
     sql: SELECT * FROM ml.PREDICT(
           MODEL ${future_purchase_model.SQL_TABLE_NAME},
-          (SELECT * FROM ${testing_input.SQL_TABLE_NAME}));;
+          (SELECT * FROM ${future_input.SQL_TABLE_NAME}));;
   }
-  dimension: predicted_will_purchase_in_future {
-    type: number
+  dimension: predicted_will_purchase_in_future {type: number}
+  dimension: visitId {type: number hidden:yes}
+  dimension: fullVisitorId {type: number hidden: yes}
+  measure: max_predicted_score {
+    type: max
+    value_format_name: percent_2
+    sql: ${predicted_will_purchase_in_future} ;;
   }
-
+  measure: average_predicted_score {
+    type: average
+    value_format_name: percent_2
+    sql: ${predicted_will_purchase_in_future} ;;
+  }
 }

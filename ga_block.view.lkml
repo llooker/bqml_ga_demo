@@ -177,7 +177,7 @@ view: ga_sessions_base {
   measure: unique_visitors {
     type: count_distinct
     sql: ${fullVisitorId} ;;
-    drill_fields: [fullVisitorId, visitnumber, session_count, totals.hits, totals.page_views, totals.timeonsite]
+    drill_fields: [fullVisitorId, visitnumber, session_count, totals.hits, totals.page_views, totals.timeonsite,future_purchase_prediction.max_predicted_score]
   }
 
   measure: average_sessions_ver_visitor {

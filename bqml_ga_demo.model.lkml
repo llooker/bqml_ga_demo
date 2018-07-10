@@ -14,4 +14,8 @@ datagroup: bqml_datagroup {
 
 explore: ga_sessions {
   extends: [ga_sessions_block]
+  join: future_purchase_prediction {
+    relationship: one_to_one
+    sql_on: ${ga_sessions.visitId} = ${future_purchase_prediction.visitId} ;;
+  }
 }
