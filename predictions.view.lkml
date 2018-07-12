@@ -41,7 +41,7 @@ view: testing_input {
       column: will_purchase_in_future {}
       filters: {
         field: ga_sessions.partition_date
-        value: "540 days ago for 360 days"
+        value: "540 days ago for 180 days"
       }
       filters: {
         field: ga_sessions.prediction_window_days
