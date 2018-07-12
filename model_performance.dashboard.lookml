@@ -423,374 +423,6 @@
     col: 0
     width: 24
     height: 3
-  - title: True Positives
-    name: True Positives
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.true_positives
-    sorts:
-    - roc_curve.true_positives
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: true
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 4
-    col: 16
-    width: 4
-    height: 3
-  - title: False Positive
-    name: False Positive
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.false_positives
-    sorts:
-    - roc_curve.false_positives
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: true
-    custom_color: "#ef0e5a"
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 4
-    col: 20
-    width: 4
-    height: 3
-  - title: True Negatives
-    name: True Negatives
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.true_negatives
-    sorts:
-    - roc_curve.true_negatives
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: true
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 7
-    col: 20
-    width: 4
-    height: 3
-  - title: False Negatives
-    name: False Negatives
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.false_negatives
-    sorts:
-    - roc_curve.false_negatives
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: true
-    custom_color: "#ef0e5a"
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 7
-    col: 16
-    width: 4
-    height: 3
-  - title: Accuracy (threshold)
-    name: Accuracy (threshold)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.threshold_accuracy
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 2
-    col: 0
-    width: 6
-    height: 2
-  - title: Recall (threshold)
-    name: Recall (threshold)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.recall
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 2
-    col: 6
-    width: 6
-    height: 2
-  - title: Precision (threshold)
-    name: Precision (threshold)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.precision
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 2
-    col: 18
-    width: 6
-    height: 2
-  - title: F1 (threshold)
-    name: F1 (threshold)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: single_value
-    fields:
-    - roc_curve.threshold_f1
-    limit: 500
-    query_timezone: America/New_York
-    custom_color_enabled: false
-    custom_color: forestgreen
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    stacking: ''
-    show_value_labels: false
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: true
-    point_style: none
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    interpolation: linear
-    series_types: {}
-    listen:
-      Error Matrix Threshold: roc_curve.threshold
-    row: 2
-    col: 12
-    width: 6
-    height: 2
   - name: Training Metrics
     type: text
     title_text: Training Metrics
@@ -854,10 +486,402 @@
     col: 8
     width: 8
     height: 6
+  - title: Accuracy (threshold)
+    name: Accuracy (threshold)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.threshold_accuracy
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.threshold_accuracy
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 2
+    col: 0
+    width: 6
+    height: 2
+  - title: Recall (threshold)
+    name: Recall (threshold)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.recall
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.recall
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 2
+    col: 6
+    width: 6
+    height: 2
+  - title: F1 (threshold)
+    name: F1 (threshold)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.threshold_f1
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.threshold_f1
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 2
+    col: 12
+    width: 6
+    height: 2
+  - title: Precision (threshold)
+    name: Precision (threshold)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.precision
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.precision
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 2
+    col: 18
+    width: 6
+    height: 2
+  - title: True Positives
+    name: True Positives
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.true_positives
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.true_positives
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: true
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 4
+    col: 16
+    width: 4
+    height: 3
+  - title: False Positive
+    name: False Positive
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.false_positives
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.false_positives
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: true
+    custom_color: "#ef0e5a"
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 4
+    col: 20
+    width: 4
+    height: 3
+  - title: False Negatives
+    name: False Negatives
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.false_negatives
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.false_negatives
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: true
+    custom_color: "#ef0e5a"
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 7
+    col: 16
+    width: 4
+    height: 3
+  - title: True Negatives
+    name: True Negatives
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: single_value
+    fields:
+    - roc_curve.true_negatives
+    - roc_curve.threshold
+    sorts:
+    - roc_curve.threshold
+    - roc_curve.true_negatives
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: true
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    stacking: ''
+    show_value_labels: false
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    limit_displayed_rows: false
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    listen:
+      Error Matrix Threshold: roc_curve.threshold
+    row: 7
+    col: 20
+    width: 4
+    height: 3
   filters:
   - name: Error Matrix Threshold
     title: Error Matrix Threshold
     type: number_filter
-    default_value: '0.10955091618781454'
-    allow_multiple_values: false
+    default_value: ">=0.08"
+    allow_multiple_values: true
     required: true
