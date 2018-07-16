@@ -4,7 +4,7 @@ connection: "google_analytics2"
 include: "*.view"
 
 # include all the dashboards
-# include: "*.dashboard"
+include: "*.dashboard"
 
 datagroup: bqml_datagroup {
   #retrain model every day
