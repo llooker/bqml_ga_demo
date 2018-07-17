@@ -95,7 +95,7 @@ view: roc_curve {
     type: number
     link: {
       label: "Likely Customers to Purchase"
-      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future]=%3E%3D{{value}}"
+      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future_probability]=%3E%3D{{value}}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -191,16 +191,21 @@ view: future_purchase_prediction {
           (SELECT * FROM ${future_input.SQL_TABLE_NAME}));;
   }
   dimension: predicted_will_purchase_in_future {type: number}
+  dimension: predicted_will_purchase_in_future_probability {
+    value_format_name: percent_2
+    type: number
+    sql:  ${TABLE}.predicted_will_purchase_in_future_probs[ORDINAL(1)].prob;;
+  }
   dimension: visitId {type: number hidden:yes}
   dimension: fullVisitorId {type: number hidden: yes}
   measure: max_predicted_score {
     type: max
     value_format_name: percent_2
-    sql: ${predicted_will_purchase_in_future} ;;
+    sql: ${predicted_will_purchase_in_future_probability} ;;
   }
   measure: average_predicted_score {
     type: average
     value_format_name: percent_2
-    sql: ${predicted_will_purchase_in_future} ;;
+    sql: ${predicted_will_purchase_in_future_probability} ;;
   }
 }
