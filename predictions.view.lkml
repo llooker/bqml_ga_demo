@@ -78,8 +78,18 @@ view: future_purchase_model_evaluation {
           MODEL ${future_purchase_model.SQL_TABLE_NAME},
           (SELECT * FROM ${testing_input.SQL_TABLE_NAME}));;
   }
-  dimension: recall {type: number value_format_name:percent_2}
+  dimension: recall {
+    type: number
+    value_format_name:percent_2
+    description: "How false positives/negatives are penalized. True positives over all positives."
+    }
+
+
+
   dimension: accuracy {type: number value_format_name:percent_2}
+  ### Accuracy of the model evaluations ###
+
+
   dimension: f1_score {type: number value_format_name:percent_3}
   dimension: log_loss {type: number}
   dimension: roc_auc {type: number}
@@ -95,7 +105,7 @@ view: roc_curve {
     type: number
     link: {
       label: "Likely Customers to Purchase"
-      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future_probability]=%3E%3D{{value}}"
+      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,ga_sessions.channelGrouping,device.isMobile,trafficSource.medium,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future_probability]=%3E%3D{{value}}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
   }
@@ -109,6 +119,7 @@ view: roc_curve {
     type:  number
     value_format_name: percent_2
     sql:  ${true_positives} / NULLIF((${true_positives} + ${false_positives}),0);;
+    description: "Equal to true positives over all positives. Indicative of how false positives are penalized. Set high to get no false positives"
   }
   measure: total_false_positives {
     type: sum
@@ -190,7 +201,10 @@ view: future_purchase_prediction {
           MODEL ${future_purchase_model.SQL_TABLE_NAME},
           (SELECT * FROM ${future_input.SQL_TABLE_NAME}));;
   }
-  dimension: predicted_will_purchase_in_future {type: number}
+  dimension: predicted_will_purchase_in_future {
+    type: number
+    description: "Binary classification based on max predicted value"
+    }
   dimension: predicted_will_purchase_in_future_probability {
     value_format_name: percent_2
     type: number
