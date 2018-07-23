@@ -244,7 +244,8 @@ view: ga_sessions_base {
           LEFT JOIN UNNEST([subquery_table.totals]) as totals
           WHERE subquery_table.fullvisitorid = ${TABLE}.fullvisitorid
             AND subquery_table.visitStarttime > ${TABLE}.visitStarttime
-            AND subquery_table.visitStarttime - ${TABLE}.visitStarttime < {% parameter prediction_window_days %}*24*60*60 --X days, in seconds
+            AND subquery_table.visitStarttime - ${TABLE}.visitStarttime
+              < {% parameter prediction_window_days %}*24*60*60 --X days, in seconds
            ) ;;
   }
 
