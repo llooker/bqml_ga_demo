@@ -59,6 +59,8 @@ view: future_purchase_model {
       CREATE OR REPLACE MODEL ${SQL_TABLE_NAME}
       OPTIONS(model_type='logistic_reg'
         , labels=['will_purchase_in_future']
+        , min_rel_progress = 0.005
+        , max_iterations = 40
         ) AS
       SELECT
          * EXCEPT(fullVisitorId, visitId)
