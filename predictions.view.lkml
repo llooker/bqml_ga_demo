@@ -224,4 +224,43 @@ view: future_purchase_prediction {
     value_format_name: percent_2
     sql: ${predicted_will_purchase_in_future_probability} ;;
   }
+
+  parameter: campaign_cost_per_recipient {
+    description: "Enter estimated cost per recipient for targeted campaign in USD"
+    type: number
+    default_value: "0.75"
+  }
+
+  measure: estimated_campaign_cost_per_recipient {
+    label:"Est. Campaign Cost per Recipient"
+    type: max
+    sql: {% parameter campaign_cost_per_recipient %} ;;
+  value_format_name: usd
+  }
+
+  parameter: lifetime_revenue_per_customer {
+    description: "Enter estimated lifetime value per customer"
+    type: number
+    default_value: "150.00"
+  }
+
+  measure: estimated_lifetime_revenue_per_customer {
+    label:"Est. Lifetime Revenue per Customer"
+    type: max
+    sql: {% parameter lifetime_revenue_per_customer %} ;;
+    value_format_name: usd
+  }
+
+  parameter: conversion_boost_from_campaign {
+    description: "Enter % increase in customer acquisition as a result of targeted campaign"
+    type: number
+    default_value: "0.25"
+  }
+
+  measure: estimated_conversion_boost_from_campaign {
+    label:"Est. Conversion Boost from Campaign"
+    type: max
+    sql: {% parameter conversion_boost_from_campaign %} ;;
+    value_format_name: percent_1
+  }
 }

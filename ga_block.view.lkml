@@ -461,6 +461,13 @@ view: device_base {
   dimension: operatingSystem {label: "Operating System"}
   dimension: operatingSystemVersion {label: "Operating System Version"}
   dimension: isMobile {label: "Is Mobile"}
+  dimension: Device_Type {
+    type:  string
+    sql:CASE
+          WHEN ${isMobile} then 'Mobile'
+          ELSE 'Desktop'
+        END;;
+  }
   dimension: flashVersion {label: "Flash Version"}
   dimension: javaEnabled {
     label: "Java Enabled"
