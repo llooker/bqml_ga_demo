@@ -112,7 +112,7 @@ view: roc_curve {
       icon_url: "http://www.looker.com/favicon.ico"
     }
     link: {
-      label: "User Finder"
+      label: "Campaign List Creator"
       url: "/dashboards/202?Customer%20Propensity%20to%20Purchase=>{{ rendered_value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
