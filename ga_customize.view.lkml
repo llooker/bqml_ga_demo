@@ -7,7 +7,7 @@ explore: ga_sessions_block {
   always_filter: {
     filters: {
       field: ga_sessions.partition_date
-      value: "400 days ago for 400 days"
+      value: "600 days ago for 600 days"
       ## Partition Date should always be set to a recent date to avoid runaway queries
    }
   }

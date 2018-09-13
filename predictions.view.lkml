@@ -198,7 +198,7 @@ view: future_input {
       column: first_time_visitors {}
       filters: {
         field: ga_sessions.partition_date
-        value: "400 days"
+        value: "600 days"
       }
     }
   }
