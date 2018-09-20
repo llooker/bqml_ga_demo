@@ -61,6 +61,7 @@ view: future_purchase_model {
         , labels=['will_purchase_in_future']
         , min_rel_progress = 0.005
         , max_iterations = 40
+        , auto_class_weights=true
         ) AS
       SELECT
          * EXCEPT(fullVisitorId, visitId)
