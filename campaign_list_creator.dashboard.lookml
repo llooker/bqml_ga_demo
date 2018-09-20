@@ -423,7 +423,7 @@
   - name: Customer Propensity to Purchase
     title: Customer Propensity to Purchase
     type: field_filter
-    default_value: ">=0.08"
+    default_value: ">=0.65"
     allow_multiple_values: true
     required: false
     model: bqml_ga_demo
