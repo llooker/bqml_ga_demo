@@ -1,15 +1,32 @@
 ### What does this Looker Block do for me?
-**(1) Combine Multiple Data Sources** - Combine your GA data with data from AdWords, DoubleClick, Facebook Ads, Salesforce, and more to get a holistic view of all your customer data in one central view (see bottom of this page for instructions).
+**(1) Machine Learning** - utilize BigQuery's new Machine Learning functionality with Looker! In this example, we use a binary machine learning model to determine, out of all the visitors that come to our website each day, specifically which of those customers will make a conversion. 
 
-**(2) Replicate Existing GA Reports + More** - Replicate all your existing GA reports and dashboards in a matter of minutes or hours to make the switch to Looker seamless. Plus, enjoy all the additional value-add analysis that comes turnkey with this plug-and-play model and dashboards. Time-to-value for a new data tool has never been quicker.
+**(2) Combine Multiple Data Sources** - Combine your GA data with data from AdWords, DoubleClick, Facebook Ads, Salesforce, and more to get a holistic view of all your customer data in one central view (see bottom of this page for instructions).
 
-**(3) Compare Multiple Dimensions and Metrics** - rather than being limited to viewing 1 dimension, and 2-4 metrics at a time, Looker allows you to compare any number of dimensions and metrics, including retroactive goals and custom user segments, on the same visualization or dashboard.
+**(3) Replicate Existing GA Reports + More** - Replicate all your existing GA reports and dashboards in a matter of minutes or hours to make the switch to Looker seamless. Plus, enjoy all the additional value-add analysis that comes turnkey with this plug-and-play model and dashboards. Time-to-value for a new data tool has never been quicker.
 
-**(4) Enterprise Data Platform** - Take advantage of Looker's data platform functionality, including [data actions](https://discourse.looker.com/t/data-actions/3573), scheduling, permissions, alerting, parameterization (each user can only see their own data), and more
+**(4) Compare Multiple Dimensions and Metrics** - rather than being limited to viewing 1 dimension, and 2-4 metrics at a time, Looker allows you to compare any number of dimensions and metrics, including retroactive goals and custom user segments, on the same visualization or dashboard.
 
-**(5) Multiple GA Properties in One Dashboard** - Elevate your analysis beyond the limited "Roll-Up Reporting" and see all properties in one dashboard and explore interface! The parameterize user permissions as necessary (so analyst for website A can't see data for website B) to give each user a live view into the data that matters to them
+**(5) Enterprise Data Platform** - Take advantage of Looker's data platform functionality, including [data actions](https://discourse.looker.com/t/data-actions/3573), scheduling, permissions, alerting, parameterization (each user can only see their own data), and more
 
-**(6) Usable / Shareable Dashboards** - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, period-end reporting, anomaly detection, or whatever else serves your use-case.
+**(6) Multiple GA Properties in One Dashboard** - Elevate your analysis beyond the limited "Roll-Up Reporting" and see all properties in one dashboard and explore interface! The parameterize user permissions as necessary (so analyst for website A can't see data for website B) to give each user a live view into the data that matters to them
+
+**(7) Usable / Shareable Dashboards** - create centralized dashboards for the entire team, and departmental or individual dashboards for each user, and rest easy knowing everyone is looking at the same information at all times. Then schedule the dashboard for emails or alerts, period-end reporting, anomaly detection, or whatever else serves your use-case.
+
+### BQML Overview
+
+#### The models: 
+* **Inputs**: In the view file for the “predictions” in this block, we start by creating two Native Derived Tables: one for training and one for testing. In principle these could be changed for anything that we want to predict (in this  case it is a prediction of future purchases from any given session). It is important that these two have the exact same columns in them.
+* **ML Models**: The next step is to create a machine learning model using BQML’s syntax, as a derived table with Looker’s  `sql_create:` tag. This allows us full control over the parameters of the ML model. In this example we are using Logistic Regression, which will inform what model statistics come out of the ML Model. 
+* **Evaluation and Training statistics**: The next 3 explores (future_purchase_model_evaluation, future_purchase_model_training_info and roc_curve) need to additional modification. These enable our dashboard to give us the metrics we need to evaluate our ML model.
+* **Future predictions**: The last NDT should have identical columns to our input (training/testing) NDTs, but without the actual column to predict. Once we have this we can again use BQML’s `PREDICT` function to use the model we made for actual predictions for the future. That view can be expanded and embellished to get the metrics we are interested in.
+* **Final explore**: Finally, we can take this set of predictions and join it to the main explore that we have to seamlessly explore all our data with the predictions of the ML models.
+
+#### The Dashboard:
+* **Training info**: At the bottom of this dashboard is an overview of the training of our model: how long it took, how many iterations, and how it improved over time (loss function: lower is better). This can be useful information to know as you tweak your model to made sure training isn’t taking too long, or that the algorithm isn’t getting stuck somewhere. 
+* **Model Performance (Static)**: At the top of the dashboard we see what the out-of-the-box version of the model does (static) in terms of accuracy, recall, and F1 score. We can also see the ROC-Curve and the precision-recall curve for tradeoffs the model has between accuracy, recall, and precision. 
+* **Model Performance (Threshold)**: At the bottom of the top section we can see the details of the ROC-Curve in a table, and we can use that to do some quick scenario testing. In the filters of the dashboard, we can put in a desired confidence threshold for what we would like to use to classify (as opposed to the default 50%), our positives and negatives. Running the dashboard with a new threshold will update the dynamic (threshold) parts of the dashboard to give us the error matrix, and new accuracy, recall, F1, and precision values at that threshold. 
+* **Looking at the future**: We can click on any of the threshold values in our detailed ROC-Curve table, and we will get an option to look at “Likely customers to purchase.” This will give us a list of all predicted “positives” in the current data that have at least that propensity to be positive. While the rest of the dashboard is looking into the past/training/testing data, this applies those parameters to the future, “unlabeled” data.
 
 
 ### Google Analytics Premium Data Structure
@@ -65,7 +82,6 @@ The image below depicts the possible links between various Google and external d
 * **YouTube**: Linking to GA360 - Youtube content integration cannot be tied natively with data exports. To workaround this, users can add YouTube pages to their Google Analytics console (via the GA GUI), then narrow down analysis to specific youtube channels via filters in Looker. Linking to AdWords: You can also link your AdWords account to YouTube as described [here](https://support.google.com/youtube/answer/3063482?hl=en&ref_topic=2973023).
 
 * **CRMs (such as Salesforce) or Other Sources** Google does not capture any PII, which means that ``user_id`` and/or ``client_id`` is unique to only Google Analytics Premium. This key is not shared, by default, across any of your CRM data, or any other data sources you're pulling from. To join this data, a common key must be created. There are several methods to accomplishing this, one of which Google has provided some [documentation](https://support.google.com/analytics/answer/7584446?hl=en) around. You can find a blog post, which provides an example joining firebase data to GA360 data, on [Google's Cloud Blog](https://cloud.google.com/blog/big-data/2017/04/how-to-do-cross-platform-analytics-with-google-bigquery).
-
 
 ### What if I find an error? Suggestions for improvements?
 
