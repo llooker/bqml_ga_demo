@@ -220,7 +220,7 @@
     listen: {}
     row: 0
     col: 0
-    width: 8
+    width: 6
     height: 2
   - title: Recall (static)
     name: Recall (static)
@@ -242,8 +242,8 @@
     show_comparison_label: true
     listen: {}
     row: 0
-    col: 8
-    width: 8
+    col: 6
+    width: 6
     height: 2
   - title: Precision-Recall Curve
     name: Precision-Recall Curve
@@ -296,7 +296,7 @@
     x_axis_datetime_label: ''
     hide_legend: false
     listen: {}
-    row: 4
+    row: 2
     col: 8
     width: 8
     height: 6
@@ -320,8 +320,8 @@
     show_comparison_label: true
     listen: {}
     row: 0
-    col: 16
-    width: 8
+    col: 12
+    width: 6
     height: 2
   - title: Total Iterations
     name: Total Iterations
@@ -449,7 +449,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 4
+    row: 2
     col: 16
     width: 4
     height: 3
@@ -498,7 +498,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 4
+    row: 2
     col: 20
     width: 4
     height: 3
@@ -547,7 +547,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 7
+    row: 5
     col: 20
     width: 4
     height: 3
@@ -596,7 +596,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 7
+    row: 5
     col: 16
     width: 4
     height: 3
@@ -645,7 +645,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 2
+    row: 8
     col: 0
     width: 6
     height: 2
@@ -694,7 +694,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 2
+    row: 8
     col: 6
     width: 6
     height: 2
@@ -743,7 +743,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 2
+    row: 8
     col: 18
     width: 6
     height: 2
@@ -792,7 +792,7 @@
     series_types: {}
     listen:
       Error Matrix Threshold: roc_curve.threshold
-    row: 2
+    row: 8
     col: 12
     width: 6
     height: 2
@@ -908,10 +908,31 @@
     - roc_curve.total_true_positives
     - _
     listen: {}
-    row: 4
+    row: 2
     col: 0
     width: 8
     height: 6
+  - title: Precision (static)
+    name: Precision (static)
+    model: bqml_ga_demo
+    explore: future_purchase_model_evaluation
+    type: single_value
+    fields:
+    - future_purchase_model_evaluation.precision
+    limit: 500
+    query_timezone: America/New_York
+    custom_color_enabled: false
+    custom_color: forestgreen
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    listen: {}
+    row: 0
+    col: 18
+    width: 6
+    height: 2
   filters:
   - name: Error Matrix Threshold
     title: Error Matrix Threshold

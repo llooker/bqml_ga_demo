@@ -84,9 +84,13 @@ view: future_purchase_model_evaluation {
   dimension: recall {
     type: number
     value_format_name:percent_2
-    description: "How false positives/negatives are penalized. True positives over all positives."
+    description: "True positives over all positives."
     }
-
+  dimension: precision {
+    type: number
+    value_format_name:percent_2
+    description: "True positives over true positives + false negatives."
+  }
 
 
   dimension: accuracy {type: number value_format_name:percent_2}
