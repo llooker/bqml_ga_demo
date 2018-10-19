@@ -370,40 +370,6 @@
     col: 0
     width: 6
     height: 2
-  - title: ROC Curve Details (use thresholds for filter values)
-    name: ROC Curve Details (use thresholds for filter values)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: table
-    fields:
-    - roc_curve.threshold
-    - roc_curve.false_negatives
-    - roc_curve.false_positives
-    - roc_curve.true_negatives
-    - roc_curve.true_positives
-    sorts:
-    - roc_curve.threshold
-    limit: 500
-    query_timezone: America/New_York
-    show_view_names: false
-    show_row_numbers: false
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: 0
-    listen: {}
-    row: 10
-    col: 0
-    width: 24
-    height: 3
   - title: True Positives
     name: True Positives
     model: bqml_ga_demo
@@ -933,6 +899,43 @@
     col: 18
     width: 6
     height: 2
+  - title: ROC Curve Details (use thresholds for filter values)
+    name: ROC Curve Details (use thresholds for filter values)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: table
+    fields:
+    - roc_curve.threshold
+    - roc_curve.false_negatives
+    - roc_curve.false_positives
+    - roc_curve.true_negatives
+    - roc_curve.true_positives
+    - roc_curve.precision
+    - roc_curve.recall
+    - roc_curve.threshold_accuracy
+    sorts:
+    - roc_curve.threshold
+    limit: 500
+    query_timezone: America/New_York
+    show_view_names: false
+    show_row_numbers: false
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
+    listen: {}
+    row: 10
+    col: 0
+    width: 24
+    height: 3
   filters:
   - name: Error Matrix Threshold
     title: Error Matrix Threshold
