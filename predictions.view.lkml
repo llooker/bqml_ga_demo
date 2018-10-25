@@ -112,11 +112,6 @@ view: roc_curve {
     type: number
     value_format_name: decimal_4
     link: {
-      label: "Likely Customers to Purchase"
-      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,ga_sessions.channelGrouping,device.isMobile,trafficSource.medium,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future_probability]=%3E%3D{{value}}"
-      icon_url: "http://www.looker.com/favicon.ico"
-    }
-    link: {
       label: "Campaign List Creator"
       url: "/dashboards/202?Customer%20Propensity%20to%20Purchase=>{{ rendered_value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
