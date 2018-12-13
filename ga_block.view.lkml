@@ -190,6 +190,29 @@ view: ga_sessions_base {
   measure: total_visitors {
     type: count
     drill_fields: [fullVisitorId, visitnumber, session_count, totals.hits, totals.page_views, totals.timeonsite]
+    action: {
+      label: "Send Campaign to these Visitors"
+      icon_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLBUWEOlVIFEKT3XWLrI_XN9N80czI1f9OFzZ7pLKav44CaDWK"
+      url: "https://www.marketo.com"
+      form_param: {
+        name: "campaign_id"
+        type: string
+        label: "Campaign ID"
+        required: yes
+        default: "948576"
+      }
+      form_param: {
+        name: "campaign_name"
+        type: string
+        label: "Campaign Name"
+        required: yes
+        default: "WeeklyTopPurchasers"
+      }
+      param: {
+        name: "list"
+        value: "{{ link }}"
+      }
+    }
   }
 
   measure: first_time_visitors {
@@ -461,6 +484,13 @@ view: device_base {
   dimension: operatingSystem {label: "Operating System"}
   dimension: operatingSystemVersion {label: "Operating System Version"}
   dimension: isMobile {label: "Is Mobile"}
+  dimension: Device_Type {
+    type:  string
+    sql:CASE
+          WHEN ${isMobile} then 'Mobile'
+          ELSE 'Desktop'
+        END;;
+  }
   dimension: flashVersion {label: "Flash Version"}
   dimension: javaEnabled {
     label: "Java Enabled"

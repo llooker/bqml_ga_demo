@@ -6,7 +6,7 @@ view: training_input {
       column: fullVisitorId {}
       column: medium { field: trafficSource.medium }
       column: channelGrouping {}
-      column: isMobile { field: device.isMobile }
+      column: isMobile {field: device.isMobile}
       column: country { field: geoNetwork.country }
       column: bounces_total { field: totals.bounces_total }
       column: pageviews_total { field: totals.pageviews_total }
@@ -61,6 +61,7 @@ view: future_purchase_model {
         , labels=['will_purchase_in_future']
         , min_rel_progress = 0.005
         , max_iterations = 40
+        , auto_class_weights=true
         ) AS
       SELECT
          * EXCEPT(fullVisitorId, visitId)
@@ -83,9 +84,13 @@ view: future_purchase_model_evaluation {
   dimension: recall {
     type: number
     value_format_name:percent_2
-    description: "How false positives/negatives are penalized. True positives over all positives."
+    description: "True positives over all positives."
     }
-
+  dimension: precision {
+    type: number
+    value_format_name:percent_2
+    description: "True positives over true positives + false negatives."
+  }
 
 
   dimension: accuracy {type: number value_format_name:percent_2}
@@ -105,11 +110,14 @@ view: roc_curve {
   }
   dimension: threshold {
     type: number
+    value_format_name: decimal_4
     link: {
-      label: "Likely Customers to Purchase"
-      url: "/explore/bqml_ga_demo/ga_sessions?fields=ga_sessions.fullVisitorId,ga_sessions.channelGrouping,device.isMobile,trafficSource.medium,future_purchase_prediction.max_predicted_score&f[future_purchase_prediction.predicted_will_purchase_in_future_probability]=%3E%3D{{value}}"
+      label: "Campaign List Creator"
+      url: "/dashboards/202?Customer%20Propensity%20to%20Purchase=>{{ rendered_value | encode_uri }}"
       icon_url: "http://www.looker.com/favicon.ico"
     }
+
+
   }
   dimension: recall {type: number value_format_name: percent_2}
   dimension: false_positive_rate {type: number}
@@ -190,7 +198,7 @@ view: future_input {
       column: first_time_visitors {}
       filters: {
         field: ga_sessions.partition_date
-        value: "400 days"
+        value: "600 days"
       }
     }
   }
@@ -223,5 +231,106 @@ view: future_purchase_prediction {
     type: average
     value_format_name: percent_2
     sql: ${predicted_will_purchase_in_future_probability} ;;
+  }
+
+  # parameters to allow for dynamic inputs on User Finder dashboard
+
+  parameter: campaign_cost_per_recipient {
+    description: "Enter estimated cost per recipient for targeted campaign in USD"
+    type: number
+    default_value: "0.75"
+    allowed_value: {
+      label: "$0.25"
+      value: "0.25"
+    }
+    allowed_value: {
+      label: "$0.50"
+      value: "0.50"
+    }
+    allowed_value: {
+      label: "$0.75"
+      value: "0.75"
+    }
+    allowed_value: {
+      label: "$1.00"
+      value: "1.00"
+    }
+    allowed_value: {
+      label: "$1.25"
+      value: "1.25"
+    }
+  }
+
+  measure: estimated_campaign_cost_per_recipient {
+    label:"Est. Campaign Cost per Recipient"
+    type: max
+    sql: {% parameter campaign_cost_per_recipient %} ;;
+  value_format_name: usd
+  }
+
+  parameter: lifetime_revenue_per_customer {
+    description: "Enter estimated lifetime value per customer"
+    type: number
+    default_value: "150.00"
+    allowed_value: {
+      label: "$100"
+      value: "100.00"
+    }
+    allowed_value: {
+      label: "$125"
+      value: "125.00"
+    }
+    allowed_value: {
+      label: "$150"
+      value: "150.00"
+    }
+    allowed_value: {
+      label: "$175"
+      value: "175.00"
+    }
+    allowed_value: {
+      label: "$200"
+      value: "200.00"
+    }
+  }
+
+  measure: estimated_lifetime_revenue_per_customer {
+    label:"Est. Lifetime Revenue per Customer"
+    type: max
+    sql: {% parameter lifetime_revenue_per_customer %} ;;
+    value_format_name: usd
+  }
+
+  parameter: conversion_boost_from_campaign {
+    description: "Enter % increase in customer acquisition as a result of targeted campaign"
+    type: number
+    default_value: "0.30"
+    allowed_value: {
+      label: "10.0%"
+      value: "0.10"
+    }
+    allowed_value: {
+      label: "20.0%"
+      value: "0.20"
+    }
+    allowed_value: {
+      label: "30.0%"
+      value: "0.30"
+    }
+    allowed_value: {
+      label: "40.0%"
+      value: "0.40"
+    }
+    allowed_value: {
+      label: "50.0%"
+      value: "0.50"
+    }
+  }
+
+  measure: estimated_conversion_boost_from_campaign {
+    label:"Est. Conversion Boost from Campaign"
+    type: max
+    sql: {% parameter conversion_boost_from_campaign %} ;;
+    value_format_name: percent_1
   }
 }
