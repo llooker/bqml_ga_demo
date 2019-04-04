@@ -13,10 +13,10 @@ view: training_input {
       column: transactions_count { field: totals.transactions_count }
       column: first_time_visitors {}
       column: will_purchase_in_future {}
-      filters: {
-        field: ga_sessions.partition_date
-        value: "1000 days ago for 360 days"
-      }
+#       filters: {
+#         field: ga_sessions.partition_date
+#         value: "1000 days ago for 360 days"
+#       }
       filters: {
         field: ga_sessions.prediction_window_days
         value: "180"
@@ -39,10 +39,10 @@ view: testing_input {
       column: transactions_count { field: totals.transactions_count }
       column: first_time_visitors {}
       column: will_purchase_in_future {}
-      filters: {
-        field: ga_sessions.partition_date
-        value: "640 days ago for 180 days"
-      }
+#       filters: {
+#         field: ga_sessions.partition_date
+#         value: "640 days ago for 180 days"
+#       }
       filters: {
         field: ga_sessions.prediction_window_days
         value: "180"
@@ -196,10 +196,10 @@ view: future_input {
       column: pageviews_total { field: totals.pageviews_total }
       column: transactions_count { field: totals.transactions_count }
       column: first_time_visitors {}
-      filters: {
-        field: ga_sessions.partition_date
-        value: "600 days"
-      }
+#       filters: {
+#         field: ga_sessions.partition_date
+#         value: "600 days"
+#       }
     }
   }
 }
