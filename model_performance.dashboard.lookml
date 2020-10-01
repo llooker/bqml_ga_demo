@@ -7,11 +7,8 @@
     model: bqml_ga_demo
     explore: future_purchase_model_training_info
     type: looker_area
-    fields:
-    - future_purchase_model_training_info.loss
-    - future_purchase_model_training_info.iteration
-    sorts:
-    - future_purchase_model_training_info.iteration
+    fields: [future_purchase_model_training_info.loss, future_purchase_model_training_info.iteration]
+    sorts: [future_purchase_model_training_info.iteration]
     limit: 500
     query_timezone: America/New_York
     stacking: ''
@@ -50,8 +47,7 @@
     model: bqml_ga_demo
     explore: future_purchase_model_training_info
     type: single_value
-    fields:
-    - future_purchase_model_training_info.total_training_time
+    fields: [future_purchase_model_training_info.total_training_time]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -97,8 +93,7 @@
     model: bqml_ga_demo
     explore: future_purchase_model_training_info
     type: single_value
-    fields:
-    - future_purchase_model_training_info.average_iteration_time
+    fields: [future_purchase_model_training_info.average_iteration_time]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -144,13 +139,9 @@
     model: bqml_ga_demo
     explore: future_purchase_model_training_info
     type: table
-    fields:
-    - future_purchase_model_training_info.iteration
-    - future_purchase_model_training_info.duration_ms
-    - future_purchase_model_training_info.learning_rate
-    - future_purchase_model_training_info.eval_loss
-    sorts:
-    - future_purchase_model_training_info.iteration
+    fields: [future_purchase_model_training_info.iteration, future_purchase_model_training_info.duration_ms,
+      future_purchase_model_training_info.learning_rate, future_purchase_model_training_info.eval_loss]
+    sorts: [future_purchase_model_training_info.iteration]
     limit: 500
     query_timezone: America/New_York
     show_view_names: false
@@ -204,10 +195,8 @@
     model: bqml_ga_demo
     explore: future_purchase_model_evaluation
     type: single_value
-    fields:
-    - future_purchase_model_evaluation.accuracy
-    sorts:
-    - future_purchase_model_evaluation.accuracy
+    fields: [future_purchase_model_evaluation.accuracy]
+    sorts: [future_purchase_model_evaluation.accuracy]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -227,10 +216,8 @@
     model: bqml_ga_demo
     explore: future_purchase_model_evaluation
     type: single_value
-    fields:
-    - future_purchase_model_evaluation.recall
-    sorts:
-    - future_purchase_model_evaluation.recall
+    fields: [future_purchase_model_evaluation.recall]
+    sorts: [future_purchase_model_evaluation.recall]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -250,11 +237,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: looker_line
-    fields:
-    - roc_curve.precision
-    - roc_curve.recall
-    sorts:
-    - roc_curve.precision
+    fields: [roc_curve.precision, roc_curve.recall]
+    sorts: [roc_curve.precision]
     limit: 500
     query_timezone: America/New_York
     stacking: ''
@@ -280,19 +264,9 @@
     show_null_points: true
     interpolation: monotone
     series_types: {}
-    y_axes:
-    - label: ''
-      orientation: left
-      series:
-      - id: roc_curve.precision
-        name: Precision
-        axisId: roc_curve.precision
-      showLabels: true
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
+    y_axes: [{label: '', orientation: left, series: [{id: roc_curve.precision, name: Precision,
+            axisId: roc_curve.precision}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
     x_axis_datetime_label: ''
     hide_legend: false
     listen: {}
@@ -305,10 +279,8 @@
     model: bqml_ga_demo
     explore: future_purchase_model_evaluation
     type: single_value
-    fields:
-    - future_purchase_model_evaluation.f1_score
-    sorts:
-    - future_purchase_model_evaluation.f1_score
+    fields: [future_purchase_model_evaluation.f1_score]
+    sorts: [future_purchase_model_evaluation.f1_score]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -328,8 +300,7 @@
     model: bqml_ga_demo
     explore: future_purchase_model_training_info
     type: single_value
-    fields:
-    - future_purchase_model_training_info.total_iterations
+    fields: [future_purchase_model_training_info.total_iterations]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -370,17 +341,43 @@
     col: 0
     width: 6
     height: 2
+  - title: ROC Curve Details (use thresholds for filter values)
+    name: ROC Curve Details (use thresholds for filter values)
+    model: bqml_ga_demo
+    explore: roc_curve
+    type: table
+    fields: [roc_curve.threshold, roc_curve.false_negatives, roc_curve.false_positives,
+      roc_curve.true_negatives, roc_curve.true_positives, roc_curve.precision, roc_curve.recall,
+      roc_curve.threshold_accuracy]
+    sorts: [roc_curve.threshold]
+    limit: 500
+    query_timezone: America/New_York
+    show_view_names: false
+    show_row_numbers: false
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: gray
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
+    listen: {}
+    row: 10
+    col: 0
+    width: 24
+    height: 3
   - title: True Positives
     name: True Positives
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.true_positives
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.true_positives
+    fields: [roc_curve.true_positives, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.true_positives]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: true
@@ -424,12 +421,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.false_positives
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.false_positives
+    fields: [roc_curve.false_positives, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.false_positives]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: true
@@ -473,12 +466,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.true_negatives
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.true_negatives
+    fields: [roc_curve.true_negatives, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.true_negatives]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: true
@@ -522,12 +511,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.false_negatives
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.false_negatives
+    fields: [roc_curve.false_negatives, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.false_negatives]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: true
@@ -571,12 +556,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.threshold_accuracy
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.threshold_accuracy
+    fields: [roc_curve.threshold_accuracy, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.threshold_accuracy]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -620,12 +601,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.recall
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.recall
+    fields: [roc_curve.recall, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.recall]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -669,12 +646,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.precision
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.precision
+    fields: [roc_curve.precision, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.precision]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -718,12 +691,8 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: single_value
-    fields:
-    - roc_curve.threshold_f1
-    - roc_curve.threshold
-    sorts:
-    - roc_curve.threshold
-    - roc_curve.threshold_f1
+    fields: [roc_curve.threshold_f1, roc_curve.threshold]
+    sorts: [roc_curve.threshold, roc_curve.threshold_f1]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -775,45 +744,22 @@
     model: bqml_ga_demo
     explore: roc_curve
     type: looker_line
-    fields:
-    - roc_curve.false_positives
-    - roc_curve.false_negatives
-    - roc_curve.true_negatives
-    - roc_curve.total_true_positives
-    sorts:
-    - random_tpr desc
+    fields: [roc_curve.false_positives, roc_curve.false_negatives, roc_curve.true_negatives,
+      roc_curve.total_true_positives]
+    sorts: [random_tpr desc]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - table_calculation: tpr
-      label: TPR
-      expression: "${roc_curve.total_true_positives}/(${roc_curve.total_true_positives}\
-        \ + ${roc_curve.false_negatives})"
-      value_format:
-      value_format_name:
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: _
-      label: "-"
-      expression: max(${roc_curve.total_true_positives})*(row()/max(row()))
-      value_format:
-      value_format_name:
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: fpr
-      label: FPR
-      expression: "${roc_curve.false_positives}/ (${roc_curve.false_positives} + ${roc_curve.true_negatives})"
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      _type_hint: number
-    - table_calculation: random_tpr
-      label: Random TPR
-      expression: "${fpr}+(0*${roc_curve.total_true_positives})"
-      value_format:
-      value_format_name:
-      _kind_hint: measure
-      _type_hint: number
+    dynamic_fields: [{table_calculation: tpr, label: TPR, expression: "${roc_curve.total_true_positives}/(${roc_curve.total_true_positives}\
+          \ + ${roc_curve.false_negatives})", value_format: !!null '', value_format_name: !!null '',
+        _kind_hint: measure, _type_hint: number}, {table_calculation: _, label: "-",
+        expression: 'max(${roc_curve.total_true_positives})*(row()/max(row()))', value_format: !!null '',
+        value_format_name: !!null '', _kind_hint: measure, _type_hint: number}, {
+        table_calculation: fpr, label: FPR, expression: "${roc_curve.false_positives}/\
+          \ (${roc_curve.false_positives} + ${roc_curve.true_negatives})", value_format: !!null '',
+        value_format_name: !!null '', _kind_hint: dimension, _type_hint: number},
+      {table_calculation: random_tpr, label: Random TPR, expression: "${fpr}+(0*${roc_curve.total_true_positives})",
+        value_format: !!null '', value_format_name: !!null '', _kind_hint: measure,
+        _type_hint: number}]
     stacking: ''
     show_value_labels: false
     label_density: 25
@@ -830,22 +776,10 @@
     series_point_styles:
       random_tpr: diamond
     limit_displayed_rows: false
-    y_axes:
-    - label: ''
-      orientation: left
-      series:
-      - id: roc_curve.total_true_positives
-        name: Total True Positives
-        axisId: roc_curve.total_true_positives
-      - id: _
-        name: "-"
-        axisId: _
-      showLabels: true
-      showValues: true
-      unpinAxis: false
-      tickDensity: default
-      tickDensityCustom: 5
-      type: linear
+    y_axes: [{label: '', orientation: left, series: [{id: roc_curve.total_true_positives,
+            name: Total True Positives, axisId: roc_curve.total_true_positives}, {
+            id: _, name: "-", axisId: _}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
     y_axis_combined: true
     show_y_axis_labels: true
     show_y_axis_ticks: true
@@ -867,12 +801,8 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    hidden_fields:
-    - roc_curve.true_negatives
-    - roc_curve.false_negatives
-    - roc_curve.false_positives
-    - roc_curve.total_true_positives
-    - _
+    hidden_fields: [roc_curve.true_negatives, roc_curve.false_negatives, roc_curve.false_positives,
+      roc_curve.total_true_positives, _]
     listen: {}
     row: 2
     col: 0
@@ -883,8 +813,7 @@
     model: bqml_ga_demo
     explore: future_purchase_model_evaluation
     type: single_value
-    fields:
-    - future_purchase_model_evaluation.precision
+    fields: [future_purchase_model_evaluation.precision]
     limit: 500
     query_timezone: America/New_York
     custom_color_enabled: false
@@ -899,43 +828,6 @@
     col: 18
     width: 6
     height: 2
-  - title: ROC Curve Details (use thresholds for filter values)
-    name: ROC Curve Details (use thresholds for filter values)
-    model: bqml_ga_demo
-    explore: roc_curve
-    type: table
-    fields:
-    - roc_curve.threshold
-    - roc_curve.false_negatives
-    - roc_curve.false_positives
-    - roc_curve.true_negatives
-    - roc_curve.true_positives
-    - roc_curve.precision
-    - roc_curve.recall
-    - roc_curve.threshold_accuracy
-    sorts:
-    - roc_curve.threshold
-    limit: 500
-    query_timezone: America/New_York
-    show_view_names: false
-    show_row_numbers: false
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: gray
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    limit_displayed_rows_values:
-      show_hide: hide
-      first_last: first
-      num_rows: 0
-    listen: {}
-    row: 10
-    col: 0
-    width: 24
-    height: 3
   filters:
   - name: Error Matrix Threshold
     title: Error Matrix Threshold
@@ -943,3 +835,9 @@
     default_value: ">=0.65"
     allow_multiple_values: true
     required: true
+  - name: Model Name
+    title: Model Name
+    type: string_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
